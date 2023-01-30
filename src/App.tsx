@@ -5,6 +5,7 @@ function App() {
   const [nuevaFrase, setNuevaFrase] = useState('');
   const [frases, setFrases] = useState<string[]>([]);
   const [filtro, setFiltro] = useState('');
+  const frasesAMostrar = frases.filter((f) => f.includes(filtro));
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
       handleAdd();
@@ -18,29 +19,31 @@ function App() {
   };
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          paddingBottom: '25px',
-        }}>
-        <label>
-          <input
-            style={{
-              fontSize: '1.1rem',
-              padding: '10px 13px',
-              display: 'inline-block',
-              borderRadius: '35px',
-              textAlign: 'center',
-              width: '350px',
-            }}
-            id="filtro"
-            value={filtro}
-            onChange={(e) => setFiltro(e.target.value)}
-            placeholder="Buscar Frase🔍"
-          />
-        </label>
-      </div>
+      {frasesAMostrar.length > 0 && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            paddingBottom: '25px',
+          }}>
+          <label>
+            <input
+              style={{
+                fontSize: '1.1rem',
+                padding: '10px 13px',
+                display: 'inline-block',
+                borderRadius: '35px',
+                textAlign: 'center',
+                width: '350px',
+              }}
+              id="filtro"
+              value={filtro}
+              onChange={(e) => setFiltro(e.target.value)}
+              placeholder="Buscar Frase🔍"
+            />
+          </label>
+        </div>
+      )}
 
       <div
         style={{
@@ -88,43 +91,56 @@ function App() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          boxShadow: '0px 0px 15px -4px rgba(0,0,0,0.8)',
-          '-webkit-box-shadow': '0px 0px 15px -4px rgba(0,0,0,0.8)',
-          '-moz-box-shadow': '0px 0px 15px -4px rgba(0,0,0,0.8)',
-          borderRadius: '5px',
+          width: '100%',
         }}>
-        <h2
-          style={{
-            width: '80%',
-            textAlign: 'center',
-            borderBottom: '1px solid black',
-          }}>
-          Frases
-        </h2>
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            boxShadow: '0px 0px 15px -4px rgba(0,0,0,0.8)',
+            '-webkit-box-shadow': '0px 0px 15px -4px rgba(0,0,0,0.8)',
+            '-moz-box-shadow': '0px 0px 15px -4px rgba(0,0,0,0.8)',
+            borderRadius: '10px',
+            minWidth: '85%',
+            maxWidth: '1280px',
           }}>
-          {frases
-            .filter((f) => f.includes(filtro))
-            .map((frase) => (
-              <div
-                style={{
-                  justifySelf: 'auto',
-                  minHeight: '2vh',
-                  padding: '1.5vh',
-                  margin: '5px',
-                  boxShadow: '0 0 10px 2px rgba(0, 0, 0, .1)',
-                  '-webkit-box-shadow': '0 0 10px -1px rgba(0, 0, 0, .1)',
-                  '-moz-box-shadow': '0 0 10px 2px rgba(0, 0, 0, .1)',
-                  borderRadius: '10px',
-                }}
-                key={frase}>
-                <span>{frase}</span>
-              </div>
-            ))}
+          <h2
+            style={{
+              width: '80%',
+              textAlign: 'center',
+              borderBottom: '1px solid black',
+            }}>
+            Frases
+          </h2>
+          {frasesAMostrar.length > 0 ? (
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                width: '100%',
+                paddingBottom: '10px',
+              }}>
+              {frasesAMostrar.map((frase) => (
+                <div
+                  style={{
+                    justifySelf: 'auto',
+                    minHeight: '2vh',
+                    padding: '1.5vh',
+                    margin: '5px 10px',
+                    boxShadow: '0 0 10px 2px rgba(0, 0, 0, .1)',
+                    '-webkit-box-shadow': '0 0 10px -1px rgba(0, 0, 0, .1)',
+                    '-moz-box-shadow': '0 0 10px 2px rgba(0, 0, 0, .1)',
+                    borderRadius: '10px',
+                  }}
+                  key={frase}>
+                  <span>{frase}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No hay frases cargadas todavía</p>
+          )}
         </div>
       </div>
     </>
