@@ -2,7 +2,6 @@ import { KeyboardEvent, useState } from 'react';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
   const [nuevaFrase, setNuevaFrase] = useState('');
   const [frases, setFrases] = useState<string[]>([]);
   const [filtro, setFiltro] = useState('');
@@ -14,6 +13,7 @@ function App() {
   const handleAdd = () => {
     if (nuevaFrase.length > 0) {
       setFrases((f) => [...f, nuevaFrase]);
+      setNuevaFrase('');
     }
   };
   return (
@@ -22,6 +22,7 @@ function App() {
         Nueva frase:
         <input
           id="cargar-frase"
+          value={nuevaFrase}
           onChange={(e) => setNuevaFrase(e.target.value?.trim() ?? '')}
           onKeyDown={handleKeyDown}
         />
@@ -30,7 +31,11 @@ function App() {
 
       <label>
         Filtro:
-        <input id="filtro" onChange={(e) => setFiltro(e.target.value)} />
+        <input
+          id="filtro"
+          value={filtro}
+          onChange={(e) => setFiltro(e.target.value)}
+        />
       </label>
 
       <div>
