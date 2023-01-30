@@ -22,13 +22,13 @@ function App() {
         style={{
           display: 'flex',
           justifyContent: 'center',
-          paddingBottom: '50px',
+          paddingBottom: '25px',
         }}>
         <label>
           <input
             style={{
               fontSize: '1.1rem',
-              padding: '15px 13px',
+              padding: '10px 13px',
               display: 'inline-block',
               borderRadius: '35px',
               textAlign: 'center',
@@ -41,11 +41,13 @@ function App() {
           />
         </label>
       </div>
+
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          paddingBottom: '25px',
         }}>
         <div>
           <input
@@ -83,12 +85,22 @@ function App() {
       </div>
       <div
         style={{
-          border: '5px red solid',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          boxShadow: '0px 0px 15px -4px rgba(0,0,0,0.8)',
+          '-webkit-box-shadow': '0px 0px 15px -4px rgba(0,0,0,0.8)',
+          '-moz-box-shadow': '0px 0px 15px -4px rgba(0,0,0,0.8)',
+          borderRadius: '5px',
         }}>
-        <h2>Frases</h2>
+        <h2
+          style={{
+            width: '80%',
+            textAlign: 'center',
+            borderBottom: '1px solid black',
+          }}>
+          Frases
+        </h2>
         <div
           style={{
             display: 'grid',
@@ -101,13 +113,13 @@ function App() {
               <div
                 style={{
                   justifySelf: 'auto',
-                  color: 'red',
-                  backgroundColor: 'black',
                   minHeight: '2vh',
                   padding: '1.5vh',
-                  border: '1px solid red',
                   margin: '5px',
                   boxShadow: '0 0 10px 2px rgba(0, 0, 0, .1)',
+                  '-webkit-box-shadow': '0 0 10px -1px rgba(0, 0, 0, .1)',
+                  '-moz-box-shadow': '0 0 10px 2px rgba(0, 0, 0, .1)',
+                  borderRadius: '10px',
                 }}
                 key={frase}>
                 <span>{frase}</span>
