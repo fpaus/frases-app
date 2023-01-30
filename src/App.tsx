@@ -1,34 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { KeyboardEvent, useState } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [count, setCount] = useState(0);
+  const [nuevaFrase, setNuevaFrase] = useState('');
+  const [frases, setFrases] = useState<string[]>([]);
+  const [filtro, setFiltro] = useState('');
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      handleAdd();
+    }
+  };
+  const handleAdd = () => {
+    if (nuevaFrase.length > 0) {
+      setFrases((f) => [...f, nuevaFrase]);
+    }
+  };
   return (
     <div className="App">
+      <label>
+        Nueva frase:
+        <input
+          id="cargar-frase"
+          onChange={(e) => setNuevaFrase(e.target.value?.trim() ?? '')}
+          onKeyDown={handleKeyDown}
+        />
+      </label>
+      <button onClick={handleAdd}>Agregar Frase</button>
+
+      <label>
+        Filtro:
+        <input id="filtro" onChange={(e) => setFiltro(e.target.value)} />
+      </label>
+
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {frases
+          .filter((f) => f.includes(filtro))
+          .map((frase) => (
+            <div key={frase}>{frase}</div>
+          ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
