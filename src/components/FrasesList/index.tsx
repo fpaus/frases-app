@@ -50,8 +50,8 @@ const FrasesList = () => {
                   '-moz-box-shadow': '0 0 10px 2px rgba(0, 0, 0, .1)',
                   borderRadius: '10px',
                 }}
-                key={frase}>
-                <span>{frase}</span>
+                key={frase.id}>
+                <span>{frase.texto}</span>
               </div>
             ))}
           </div>
