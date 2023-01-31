@@ -1,4 +1,4 @@
-type Frase = {
+export type Frase = {
   id: number;
   texto: string;
 };
