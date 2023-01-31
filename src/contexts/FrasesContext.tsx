@@ -1,8 +1,6 @@
-import { createContext, useReducer } from 'react';
-import frasesReducer, {
-  type FrasesActions,
-  type FrasesState,
-} from './frasesReducer';
+import { createContext } from 'react';
+import { type FrasesActions, type FrasesState } from './frasesReducer';
+import { useFrasesReducer } from './useFrasesReducer';
 type FrasesContextType = {
   state: FrasesState;
   dispatch: React.Dispatch<FrasesActions>;
@@ -22,8 +20,7 @@ export const FrasesContext = createContext<FrasesContextType>(initialState);
 export const FrasesContextProvider = ({
   children,
 }: React.PropsWithChildren<unknown>) => {
-  const [state, dispatch] = useReducer(frasesReducer, initialState.state);
-  console.log(state);
+  const { state, dispatch } = useFrasesReducer();
   return (
     <FrasesContext.Provider value={{ state, dispatch }}>
       {children}
