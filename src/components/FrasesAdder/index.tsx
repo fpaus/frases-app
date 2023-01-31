@@ -8,6 +8,7 @@ const FrasesAdder = () => {
     <div className="container">
       <div>
         <input
+          aria-label="adder-input"
           className="input"
           id="cargar-frase"
           value={fraseActual}
@@ -15,7 +16,11 @@ const FrasesAdder = () => {
           onKeyDown={handleKeyDown}
           placeholder="Nueva Frase"
         />
-        <button type="button" className="btn" onClick={handleAdd}>
+        <button
+          aria-label="adder-btn"
+          type="button"
+          className="btn"
+          onClick={handleAdd}>
           ➕
         </button>
       </div>
