@@ -1,3 +1,10 @@
+:root {
+  --input-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+  --btn-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  --btn-shadow-active: -1px 0px 46px 14px rgba(150, 150, 150, 0.77) inset;
+  --btn-shadow-hover: -1px 0px 16px 4px rgba(150, 150, 150, 0.77);
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -6,11 +13,12 @@
 }
 
 .input {
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: var(--input-shadow);
   padding: 15px 13px;
   width: 300px;
   border-radius: 20px;
 }
+
 .btn {
   border: none;
   width: 60px;
@@ -20,7 +28,21 @@
   transition: all 200ms ease-in;
   cursor: pointer;
   padding: 10px;
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--btn-shadow);
+  -webkit-box-shadow: var(--btn-shadow);
+  -moz-box-shadow: var(--btn-shadow);
   margin-left: -65px;
   border-radius: 9999px;
+}
+
+.btn:hover {
+  box-shadow: var(--btn-shadow-hover);
+  -webkit-box-shadow: var(--btn-shadow-hover);
+  -moz-box-shadow: var(--btn-shadow-hover);
+}
+
+.btn:active {
+  box-shadow: var(--btn-shadow-active);
+  -webkit-box-shadow: var(--btn-shadow-active);
+  -moz-box-shadow: var(--btn-shadow-active);
 }
